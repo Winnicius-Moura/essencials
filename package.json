@@ -4,7 +4,7 @@
   "description": "essencials components / react personal library",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "files":[
+  "files": [
     "dist"
   ],
   "scripts": {
@@ -13,7 +13,7 @@
     "build:cjs": "tsc --module CommonJs --outDir dist/cjs"
   },
   "author": "wnn",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.3.2",
     "@types/react": "^18.2.14",
@@ -25,5 +25,10 @@
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "dependencies": {
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.8"
   }
 }
