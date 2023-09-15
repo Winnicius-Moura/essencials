@@ -10,7 +10,8 @@
   "scripts": {
     "build": "rm -rf dist/ && prettier --write src/ && npm run build:esm && npm run build:cjs",
     "build:esm": "tsc",
-    "build:cjs": "tsc --module CommonJs --outDir dist/cjs"
+    "build:cjs": "tsc --module CommonJs --outDir dist/cjs",
+    "git-wnn": "git-wnn.bat"
   },
   "author": "wnn",
   "license": "MIT",
