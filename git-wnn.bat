@@ -8,14 +8,14 @@ pushd %~dp0
   echo __________________________________________
   echo wnn.dev
   set /p commit_message=Digite a mensagem do commit: 
-  @REM set /p origin_name=Digite o nome da origin: 
+  set /p origin_name=Digite o nome da origin: 
   set /p base_branch=Digite o nome da branch de destino: 
   set /p head_branch=Digite o nome da sua branch local: 
   set /p pr_title=Digite o titulo do Pull Request: 
   set /p pr_description=Digite a descricao do Pull Request: 
   git add .
   git commit -m "%commit_message%"
-  @REM git push origin "%origin_name%"
+  git push origin "%origin_name%"
   gh pr create --base "%base_branch%" --head "%head_branch%" --title "%pr_title%" --body "%pr_description%"
   
 
