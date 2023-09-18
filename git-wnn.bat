@@ -3,7 +3,7 @@ pushd %~dp0
 %@Try%
   REM 
 
-  echo automate commit and push
+  echo automate commit and pull request
 
   echo __________________________________________
   echo wnn.dev
