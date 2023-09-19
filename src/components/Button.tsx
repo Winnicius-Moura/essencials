@@ -17,5 +17,5 @@ export const Button: React.FunctionComponent<IButtonProps> = (props) => {
     <button style={defaultStyle} {...props}>
       {children}
     </button>
-  );
-};
+  )
+}
