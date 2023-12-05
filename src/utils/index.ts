@@ -72,3 +72,29 @@ export class ValidateUtils {
     return rest(10) === validateCPF[9] && rest(11) === validateCPF[10]
   }
 }
+
+export class CookieUtils {
+  static setCookie(name: string, value: string, days: number) {
+    const expirationDate = new Date();
+    expirationDate.setDate(expirationDate.getDate() + days);
+
+    const cookieValue = `${encodeURIComponent(name)}=${encodeURIComponent(value)}; expires=${expirationDate.toUTCString()}; path=/;`;
+
+    document.cookie = cookieValue;
+  }
+
+  static getCookie(name: string): string | null {
+    const decodedName = encodeURIComponent(name);
+    const cookies = document.cookie.split('; ');
+
+    for (const cookie of cookies) {
+      const [cookieName, cookieValue] = cookie.split('=');
+
+      if (cookieName === decodedName) {
+        return decodeURIComponent(cookieValue);
+      }
+    }
+
+    return null;
+  }
+}
