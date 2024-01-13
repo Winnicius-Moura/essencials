@@ -10,6 +10,14 @@ export class ArrayUtils {
 
   static checkEqualsFromArrays = (arrayA: any[], arrayB: any[]) => arrayA?.some(r => arrayB?.indexOf(r) >= 0)
 
+  static generatePaymentMethodOptions(size: number) {
+    const options = [];
+    for (let i = 1; i <= size; i++) {
+      options.push(`${i}x`)
+    }
+    return options
+  }
+
 }
 
 export class ValueUtils {
