@@ -11,7 +11,7 @@ export class ArrayUtils {
   static checkEqualsFromArrays = (arrayA: any[], arrayB: any[]) => arrayA?.some(r => arrayB?.indexOf(r) >= 0)
 
   static generatePaymentMethodOptions(size: number) {
-    const options = [];
+    const options = []
     for (let i = 1; i <= size; i++) {
       options.push(`${i}x`)
     }
@@ -28,6 +28,15 @@ export class ValueUtils {
     })
     return formattedValue
   }
+
+  static calculateSubtotalWithDiscount = (value: number, quantity: number, discount: number | null | undefined): number => {
+    const discountPercentage = discount || 0
+
+    const subtotal = value * quantity;
+    const discountAmount = subtotal * (discountPercentage / 100);
+    const subtotalWithDiscount = subtotal - discountAmount;
+    return subtotalWithDiscount;
+  }
 }
 
 export class SearchUtils {
@@ -36,30 +45,30 @@ export class SearchUtils {
     fields: (keyof T)[],
     searchValue: string | number
   ): NonNullable<T> | undefined {
-    const lowerCaseSearchValue = String(searchValue).toLowerCase();
+    const lowerCaseSearchValue = String(searchValue).toLowerCase()
 
     const foundItem = data.find(item =>
       fields.some(field =>
         String(item[field]).toLowerCase().includes(lowerCaseSearchValue)
       )
-    );
+    )
 
-    return foundItem ? foundItem : undefined;
+    return foundItem ? foundItem : undefined
 
   }
 }
 
 export class StringUtils {
   static capitalizeWords(sentence: string): string {
-    const words = sentence.split(' ');
+    const words = sentence.split(' ')
 
     const capitalizedWords = words.map(word => {
-      const firstLetter = word.charAt(0).toUpperCase();
-      const restOfWord = word.slice(1).toLowerCase();
-      return firstLetter + restOfWord;
-    });
+      const firstLetter = word.charAt(0).toUpperCase()
+      const restOfWord = word.slice(1).toLowerCase()
+      return firstLetter + restOfWord
+    })
 
-    return capitalizedWords.join(' ');
+    return capitalizedWords.join(' ')
   }
 }
 
@@ -83,26 +92,26 @@ export class ValidateUtils {
 
 export class CookieUtils {
   static setCookie(name: string, value: string, days: number) {
-    const expirationDate = new Date();
-    expirationDate.setDate(expirationDate.getDate() + days);
+    const expirationDate = new Date()
+    expirationDate.setDate(expirationDate.getDate() + days)
 
-    const cookieValue = `${encodeURIComponent(name)}=${encodeURIComponent(value)}; expires=${expirationDate.toUTCString()}; path=/;`;
+    const cookieValue = `${encodeURIComponent(name)}=${encodeURIComponent(value)} expires=${expirationDate.toUTCString()} path=/`
 
-    document.cookie = cookieValue;
+    document.cookie = cookieValue
   }
 
   static getCookie(name: string): string | null {
-    const decodedName = encodeURIComponent(name);
-    const cookies = document.cookie.split('; ');
+    const decodedName = encodeURIComponent(name)
+    const cookies = document.cookie.split(' ')
 
     for (const cookie of cookies) {
-      const [cookieName, cookieValue] = cookie.split('=');
+      const [cookieName, cookieValue] = cookie.split('=')
 
       if (cookieName === decodedName) {
-        return decodeURIComponent(cookieValue);
+        return decodeURIComponent(cookieValue)
       }
     }
 
-    return null;
+    return null
   }
 }
