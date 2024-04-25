@@ -1,6 +1,6 @@
 {
   "name": "essencials",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "description": "essencials components / react personal library",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -8,7 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "rm -rf dist/ && prettier --write src/ && npm run build:esm && npm run build:cjs",
+    "build": "rimraf dist/ && prettier --write src/ && npm run build:esm && npm run build:cjs",
     "build:esm": "tsc",
     "build:cjs": "tsc --module CommonJs --outDir dist/cjs",
     "git-wnn": "git-wnn.bat"
@@ -21,6 +21,7 @@
     "@types/react-dom": "^18.2.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "rimraf": "^5.0.5",
     "typescript": "^5.1.6"
   },
   "peerDependencies": {

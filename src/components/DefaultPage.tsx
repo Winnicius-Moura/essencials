@@ -1,24 +1,18 @@
-import React from "react"
+import React from 'react';
 
 export interface IDefaultPageProps extends React.HTMLAttributes<HTMLDivElement> {
-  companyName?: string
-  companyImage?: string
-  customStyles?: React.CSSProperties
+  companyName?: string;
+  companyImage?: string;
+  customStyles?: React.CSSProperties;
 }
 
-export const DefaultPage: React.FunctionComponent<IDefaultPageProps> = ({
-  companyName,
-  companyImage,
-  customStyles,
-  children,
-  ...restProps
-}) => {
-  const { style, ...otherProps } = restProps
+export const DefaultPage: React.FunctionComponent<IDefaultPageProps> = ({ companyName, companyImage, customStyles, children, ...restProps }) => {
+  const { style, ...otherProps } = restProps;
 
-  let defaultStyle: React.CSSProperties = style || {}
+  let defaultStyle: React.CSSProperties = style || {};
 
   if (customStyles) {
-    defaultStyle = { ...defaultStyle, ...customStyles }
+    defaultStyle = { ...defaultStyle, ...customStyles };
   }
 
   return (
