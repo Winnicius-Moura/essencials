@@ -112,28 +112,47 @@ export class CookieUtils {
   }
 }
 
-// export class CookieUtils {
-//   static setCookie(name: string, value: string, days: number) {
-//     const expirationDate = new Date();
-//     expirationDate.setDate(expirationDate.getDate() + days);
+export class CommonUtils {
+  static isValidPhone(phone: string) {
+    if (phone.length !== 11 || !!phone.match(/([0-9])\1{10}/)) {
+      return false
+    } else return true
+  }
 
-//     const cookieValue = `${encodeURIComponent(name)}=${encodeURIComponent(value)} expires=${expirationDate.toUTCString()} path=/`;
+  static isObject(value: any): value is { [key: string]: any } {
+    return value && typeof value === 'object' && !Array.isArray(value) && !(value instanceof Date);
+  }
 
-//     document.cookie = cookieValue;
-//   }
+  static exportToCSV = (bodyList: any[]) => {
+    if (!bodyList.length) return;
 
-//   static getCookie(name: string): string | null {
-//     const decodedName = encodeURIComponent(name);
-//     const cookies = document.cookie.split(' ');
+    const quoteIfNeeded = (value: any) => {
+      if (typeof value === 'string' && (value.includes(';') || value.includes('\n') || value.includes('"'))) {
+        return `"${value.replace(/"/g, '""')}"`
+      }
+      return value
+    };
 
-//     for (const cookie of cookies) {
-//       const [cookieName, cookieValue] = cookie.split('=');
+    const headers = Object.keys(bodyList[0]).join(';')
+    const rows = bodyList.map((item) =>
+      Object.values(item)
+        .map(value => {
+          if (CommonUtils.isObject(value) || Array.isArray(value)) {
+            return JSON.stringify(value)
+          }
+          return quoteIfNeeded(value)
+        })
+        .join(';')
+    ).join('\n')
 
-//       if (cookieName === decodedName) {
-//         return decodeURIComponent(cookieValue);
-//       }
-//     }
+    const csvContent = `data:text/csv;charset=utf-8,${headers}\n${rows}`;
+    const encodedUri = encodeURI(csvContent)
+    const link = document.createElement('a')
+    link.setAttribute('href', encodedUri)
+    link.setAttribute('download', 'export.csv')
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+}
 
-//     return null;
-//   }
-// }

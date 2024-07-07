@@ -1,3 +1,3 @@
 export * from '../utils';
-export { ArrayUtils, CookieUtils, SearchUtils, StringUtils, ValidateUtils, ValueUtils } from '../utils/index';
+export { ArrayUtils, CookieUtils, SearchUtils, StringUtils, ValidateUtils, ValueUtils, CommonUtils } from '../utils/index';
 export * from './Button';
